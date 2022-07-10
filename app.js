@@ -5,10 +5,8 @@ const inquirer = require('inquirer');
 
 // const pageHTML = generatePage(name,github);
 
-
 // fs.writeFile('./index.html', pageHTML(name, github), err => {
 //   if (err) throw err;
-
 //   console.log('Portfolio complete! Check out index.html to see the output!');
 // });
 
@@ -36,6 +34,25 @@ const promptUser = () => {
           return true;
         } else {
           console.log('Please enter your GitHub username!');
+          return false;
+        }
+      }
+    },
+    {
+      type: 'confirm',
+      name: 'confirmAbout',
+      message: 'Would you like to enter some information about yourself for an "About" section?',
+      default: true,
+    },
+    {
+      type: 'input',
+      name: 'about',
+      message: 'Provide some information about yourself:',
+      when: ({confirmAbout}) => {
+        if (confirmAbout) {
+          return true;
+        }
+        else {
           return false;
         }
       }
